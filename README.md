@@ -118,6 +118,7 @@ Playlists, Favorites, Setlist:
 <img width="2560" height="836" alt="playlist-1" src="https://github.com/user-attachments/assets/98363390-dbfe-473f-8339-809b14ff6046" />
 
 Playlist Editor:
+
 <img width="641" height="941" alt="playlist-editor" src="https://github.com/user-attachments/assets/0ac83ffe-97e3-4e5e-a38e-8bf46b537173" />
 
 Instruments w/Difficulty on Hover:
