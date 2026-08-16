@@ -1,0 +1,14 @@
+---
+description: When to delegate to project subagents
+alwaysApply: true
+---
+
+# Subagent delegation
+
+| Agent | Delegate when | Do not delegate when |
+|---|---|---|
+| `electron-main` | IPC, BrowserWindow, settings, protocols | Pure React UI tweaks |
+| `song-indexer` | song.ini/chart/mid parsing, scan/watch, SQLite song schema | Packaging or CSS |
+| `catalog-ui` | React pages, virtualization, filters, modals, theme | Native module / Forge issues |
+| `forge-packaging` | Electron Forge, better-sqlite3 rebuild, makers/installers | Feature logic in scanner/UI |
+| `path-map` | Song folder, SQLite location, Clone Hero format, or Hero2lrc handoff changes | Isolated UI edits |

@@ -1,0 +1,32 @@
+---
+description: CH Catalog stack, security, and domain conventions
+alwaysApply: true
+---
+
+# CH Catalog
+
+Desktop app: Electron Forge + Vite + React + better-sqlite3.
+
+## Architecture
+- Main process owns FS, SQLite, and recursive folder watching.
+- Renderer talks only through typed IPC (`window.chCatalog` via preload `contextBridge`).
+- Never enable `nodeIntegration` in the renderer. Keep `contextIsolation: true`.
+- Do not add a local HTTP API unless explicitly requested.
+
+## Clone Hero domain
+- Song folder = directory with `song.ini` plus `notes.chart` or `notes.mid`.
+- Detect instruments: Guitar, Bass, Rhythm, GuitarCoop, Keys, Drums, Vocals.
+- Do **not** detect 6-fret / GHL instruments.
+- Track `has_lyrics` and `has_video` per song.
+- Expert-only is per instrument (only Expert difficulty present).
+- Always render all instrument icons; amber = available, red = expert-only, dim = missing.
+
+## Data
+- SQLite DB in Electron `userData` with WAL mode.
+- Indexes on artist, charter, genre.
+- Setlist is in-memory only; clear on quit.
+- Main catalog must not load album art; Favorites/Setlist/Detail may use `ch-art://`.
+
+## UI
+- Dark widescreen catalog layout; virtualize large lists.
+- Search debounce 300ms.
