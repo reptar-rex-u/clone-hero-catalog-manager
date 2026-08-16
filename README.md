@@ -107,3 +107,26 @@ Forge’s Vite plugin packs only `.vite` by default, so `better-sqlite3` (left e
   - Catalog DB: `catalog.sqlite` (+ `-wal` / `-shm` while open)
   - On SQLITE_CORRUPT the app backs up those files under `corrupt-backups\`, recreates an empty DB, and rescans
 - Songs remain in your Clone Hero Songs folder
+
+Main Page:
+<img width="2560" height="1375" alt="main-catalog" src="https://github.com/user-attachments/assets/3b676c64-5941-4e4b-96d3-702bc710c7e2" />
+
+Playlists, Favorites, Setlist:
+<img width="2560" height="813" alt="favs" src="https://github.com/user-attachments/assets/b9c6f964-2c0f-4ee7-8159-1afd9a9d727c" />
+<img width="2560" height="820" alt="setlist" src="https://github.com/user-attachments/assets/9c1083a1-5333-46aa-b506-a89a3fc81199" />
+<img width="2560" height="834" alt="playlist-2" src="https://github.com/user-attachments/assets/48d6d6d3-b56a-4219-8235-9a36cdcd3fa8" />
+<img width="2560" height="836" alt="playlist-1" src="https://github.com/user-attachments/assets/98363390-dbfe-473f-8339-809b14ff6046" />
+
+Playlist Editor:
+<img width="641" height="941" alt="playlist-editor" src="https://github.com/user-attachments/assets/0ac83ffe-97e3-4e5e-a38e-8bf46b537173" />
+
+Instruments w/Difficulty on Hover:
+<img width="2198" height="193" alt="instruments" src="https://github.com/user-attachments/assets/11ca9bf0-5728-44a7-9ef0-71abb3a46f23" />
+<img width="2196" height="403" alt="difficulty-on-hover" src="https://github.com/user-attachments/assets/0a40ad12-a0d3-49e2-899f-8ff740b91bfa" />
+
+Song Info:
+<img width="1770" height="981" alt="song-info" src="https://github.com/user-attachments/assets/119de1bf-d581-4d36-8089-e086fdd700fd" />
+
+Settings & Color Picker:
+<img width="1297" height="817" alt="settings" src="https://github.com/user-attachments/assets/60ab4f77-b270-4336-9fee-cdaf93ccd384" />
+<img width="1265" height="763" alt="color-picker" src="https://github.com/user-attachments/assets/ac9f114e-7e83-41cf-9826-73e3fb23e46e" />
