@@ -2,6 +2,14 @@
 
 Portable desktop app to browse, filter, and favorite songs from a local [Clone Hero](https://clonehero.net/) library.
 
+Bro Summary:
+Clone Hero Song Catalog - When you get a large library, its hard to remember what you have. 
+This program lists all your songs, instruments available and difficulties per instrument (see pics at end).
+Preview songs, add to setlist or create custom playlists. Does not interact with Clone Hero.
+Colors are customizable. Just tell it where your songs are, scan, and enjoy. It even tells you which songs
+have lyrics and video. I'll add a button to open Bridge later so if you dont have it, you can search if it
+is available for download and get it.
+
 **Version:** see `package.json` and [CHANGELOG.md](./CHANGELOG.md).
 
 ## Download
