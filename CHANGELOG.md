@@ -5,7 +5,13 @@ All notable changes to **CH Catalog** are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Canonical version: `package.json`.
 
-## [Unreleased]
+## [1.0.1] - 2026-08-16
+
+### Added
+
+- Bridge and Clone Hero executable settings with native `.exe` pickers
+- Sidebar launch buttons for Clone Hero and Bridge
+- Bridge launch action after filtered searches, including zero-result searches
 
 ### Fixed
 

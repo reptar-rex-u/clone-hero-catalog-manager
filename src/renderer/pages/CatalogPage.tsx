@@ -6,6 +6,7 @@ import type {
   LibraryStatus,
   SongListItem,
 } from '../../shared/types';
+import { LauncherActions } from '../components/LauncherActions';
 import { SongDetailModal } from '../components/SongDetailModal';
 import { SongGrid } from '../components/SongGrid';
 import { api } from '../lib/api';
@@ -185,14 +186,32 @@ export function CatalogPage() {
           </button>
         </div>
         {songs.length === 0 ? (
-          <div className="empty">
-            No songs yet. Set your Songs folder in Settings, then rescan.
-          </div>
+          <>
+            <div className="empty">
+              {hasActiveFilters
+                ? 'No songs match your search or filters.'
+                : 'No songs yet. Set your Songs folder in Settings, then rescan.'}
+            </div>
+            {hasActiveFilters ? (
+              <div className="filtered-results-actions">
+                <span>Looking for another song?</span>
+                <LauncherActions bridgeOnly />
+              </div>
+            ) : null}
+          </>
         ) : (
           <SongGrid
             songs={songs}
             onOpen={setDetailId}
             onChanged={() => void load()}
+            footer={
+              hasActiveFilters ? (
+                <div className="filtered-results-actions">
+                  <span>Looking for another song?</span>
+                  <LauncherActions bridgeOnly />
+                </div>
+              ) : undefined
+            }
           />
         )}
       </div>

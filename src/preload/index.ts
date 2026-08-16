@@ -10,6 +10,9 @@ const api: ChCatalogApi = {
   settingsGet: () => ipcRenderer.invoke('settings:get'),
   settingsSet: (settings: Partial<AppSettings>) =>
     ipcRenderer.invoke('settings:set', settings),
+  pickExecutable: () => ipcRenderer.invoke('dialog:pickExecutable'),
+  launchBridge: () => ipcRenderer.invoke('executable:launchBridge'),
+  launchCloneHero: () => ipcRenderer.invoke('executable:launchCloneHero'),
   songsSearch: (params: SongSearchParams) =>
     ipcRenderer.invoke('songs:search', params),
   songsGetDetail: (id: number) => ipcRenderer.invoke('songs:getDetail', id),

@@ -357,6 +357,56 @@ a {
   flex-direction: column;
 }
 
+.launcher-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.launcher-actions-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.sidebar-launchers {
+  padding: 0 4px 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.sidebar-launchers .launcher-actions-wrap {
+  align-items: stretch;
+}
+
+.sidebar-launchers .launcher-actions {
+  flex-direction: column;
+}
+
+.sidebar-launchers .btn {
+  width: 100%;
+}
+
+.launcher-error {
+  color: #fca5a5;
+  font-size: 0.78rem;
+}
+
+.filtered-results-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px;
+  color: var(--text-dim);
+}
+
+.filtered-results-actions .launcher-actions-wrap {
+  align-items: center;
+}
+
 .btn {
   border: 1px solid var(--line);
   background: var(--bg-2);
@@ -824,6 +874,14 @@ a {
 
 .settings-row label {
   color: var(--text-dim);
+}
+
+.settings-row > div {
+  min-width: 0;
+}
+
+.settings-row .settings-help {
+  margin-top: 4px;
 }
 
 .settings-accent-block {

@@ -65,6 +65,17 @@ export interface AppSettings {
   songsDirectory: string;
   /** Hex accent color, e.g. #3ecf8e */
   accentColor: string;
+  /** Optional path to the Bridge executable. */
+  bridgePath: string;
+  /** Optional path to the Clone Hero executable. */
+  cloneHeroPath: string;
+}
+
+export type ExecutableTarget = 'bridge' | 'cloneHero';
+
+export interface LaunchExecutableResult {
+  ok: boolean;
+  error?: string;
 }
 
 export interface LibraryStatus {
@@ -102,6 +113,9 @@ export interface PlaylistDetail {
 export interface ChCatalogApi {
   settingsGet: () => Promise<AppSettings>;
   settingsSet: (settings: Partial<AppSettings>) => Promise<AppSettings>;
+  pickExecutable: () => Promise<string | null>;
+  launchBridge: () => Promise<LaunchExecutableResult>;
+  launchCloneHero: () => Promise<LaunchExecutableResult>;
   songsSearch: (params: SongSearchParams) => Promise<SongSearchResult>;
   songsGetDetail: (id: number) => Promise<SongDetail | null>;
   songsToggleFavorite: (id: number) => Promise<boolean>;

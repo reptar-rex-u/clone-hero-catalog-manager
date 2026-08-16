@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import type { SongListItem } from '../../shared/types';
+import type { ReactNode } from 'react';
 import { api, formatLength } from '../lib/api';
 import { AddToPlaylistModal } from './AddToPlaylistModal';
 import { InstrumentIcons } from './InstrumentIcons';
@@ -10,9 +11,10 @@ interface Props {
   songs: SongListItem[];
   onOpen: (id: number) => void;
   onChanged: () => void;
+  footer?: ReactNode;
 }
 
-export function SongGrid({ songs, onOpen, onChanged }: Props) {
+export function SongGrid({ songs, onOpen, onChanged, footer }: Props) {
   const parentRef = useRef<HTMLDivElement>(null);
   const [playlistSong, setPlaylistSong] = useState<SongListItem | null>(null);
   const rowVirtualizer = useVirtualizer({
@@ -103,6 +105,7 @@ export function SongGrid({ songs, onOpen, onChanged }: Props) {
         songName={playlistSong?.name}
         onClose={() => setPlaylistSong(null)}
       />
+      {footer}
     </>
   );
 }

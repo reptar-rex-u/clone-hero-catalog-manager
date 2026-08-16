@@ -1,7 +1,7 @@
 {
   "name": "ch-catalog",
   "productName": "CH Catalog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Portable desktop catalog for managing a Clone Hero song library",
   "main": ".vite/build/main.js",
   "private": true,

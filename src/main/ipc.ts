@@ -1,5 +1,12 @@
 import { BrowserWindow, dialog, ipcMain } from 'electron';
-import type { AppSettings, SongSearchParams } from '../shared/types';
+import { spawn } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import type {
+  AppSettings,
+  ExecutableTarget,
+  SongSearchParams,
+} from '../shared/types';
 import { recoverFromCorrupt } from './db/connection';
 import {
   getFilterOptions,
@@ -52,6 +59,63 @@ function withCorruptRecovery<T>(fn: () => T): T {
   }
 }
 
+function executablePathForTarget(
+  settings: AppSettings,
+  target: ExecutableTarget,
+): string {
+  return target === 'bridge'
+    ? settings.bridgePath
+    : settings.cloneHeroPath;
+}
+
+function validateExecutablePath(executablePath: string): string | null {
+  if (!executablePath) return 'No executable path is configured.';
+  if (path.extname(executablePath).toLowerCase() !== '.exe') {
+    return 'The configured path must point to an .exe file.';
+  }
+
+  try {
+    if (!fs.statSync(executablePath).isFile()) {
+      return 'The configured executable path is not a file.';
+    }
+  } catch {
+    return 'The configured executable could not be found.';
+  }
+
+  return null;
+}
+
+function launchExecutable(
+  executablePath: string,
+): Promise<{ ok: boolean; error?: string }> {
+  const validationError = validateExecutablePath(executablePath);
+  if (validationError) {
+    return Promise.resolve({ ok: false, error: validationError });
+  }
+
+  return new Promise((resolve) => {
+    let child: ReturnType<typeof spawn>;
+    try {
+      child = spawn(executablePath, [], {
+        detached: true,
+        shell: false,
+        stdio: 'ignore',
+      });
+    } catch {
+      resolve({ ok: false, error: 'The executable could not be launched.' });
+      return;
+    }
+
+    child.once('spawn', () => {
+      child.unref();
+      resolve({ ok: true });
+    });
+    child.once('error', () => {
+      resolve({ ok: false, error: 'The executable could not be launched.' });
+    });
+  });
+}
+
 export function registerIpcHandlers(): void {
   ipcMain.handle('settings:get', () => loadSettings());
 
@@ -64,6 +128,26 @@ export function registerIpcHandlers(): void {
     }
     return next;
   });
+
+  ipcMain.handle('dialog:pickExecutable', async () => {
+    const result = await dialog.showOpenDialog({
+      properties: ['openFile'],
+      filters: [{ name: 'Executables', extensions: ['exe'] }],
+    });
+    if (result.canceled || !result.filePaths[0]) return null;
+    return result.filePaths[0];
+  });
+
+  const launchConfiguredExecutable = (target: ExecutableTarget) => {
+    const settings = loadSettings();
+    return launchExecutable(executablePathForTarget(settings, target));
+  };
+  ipcMain.handle('executable:launchBridge', () =>
+    launchConfiguredExecutable('bridge'),
+  );
+  ipcMain.handle('executable:launchCloneHero', () =>
+    launchConfiguredExecutable('cloneHero'),
+  );
 
   ipcMain.handle('songs:search', (_e, params: SongSearchParams) =>
     withCorruptRecovery(() => searchSongs(params ?? {})),

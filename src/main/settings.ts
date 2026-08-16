@@ -7,16 +7,24 @@ import type { AppSettings } from '../shared/types';
 const DEFAULTS: AppSettings = {
   songsDirectory: '',
   accentColor: DEFAULT_ACCENT,
+  bridgePath: '',
+  cloneHeroPath: '',
 };
 
 function settingsPath(): string {
   return path.join(app.getPath('userData'), 'settings.json');
 }
 
+function coercePath(value: unknown): string {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
 function coerceSettings(parsed: Partial<AppSettings>): AppSettings {
   return {
     songsDirectory: parsed.songsDirectory ?? '',
     accentColor: normalizeHex(parsed.accentColor ?? '') ?? DEFAULT_ACCENT,
+    bridgePath: coercePath(parsed.bridgePath),
+    cloneHeroPath: coercePath(parsed.cloneHeroPath),
   };
 }
 

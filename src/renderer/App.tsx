@@ -5,6 +5,7 @@ import { PlaylistProvider, usePlaylists } from './lib/PlaylistContext';
 import { PreviewProvider } from './lib/PreviewContext';
 import { api } from './lib/api';
 import { PlaylistIcon } from './components/PlaylistIcon';
+import { LauncherActions } from './components/LauncherActions';
 import { CatalogPage } from './pages/CatalogPage';
 import { FavoritesPage } from './pages/FavoritesPage';
 import { PlaylistPage } from './pages/PlaylistPage';
@@ -16,6 +17,9 @@ function SidebarNav() {
 
   return (
     <nav className="nav">
+      <div className="sidebar-launchers">
+        <LauncherActions />
+      </div>
       <NavLink to="/" end>
         Catalog
       </NavLink>

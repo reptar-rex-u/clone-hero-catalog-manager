@@ -22,6 +22,8 @@ export function SettingsPage() {
   const { refreshPlaylists } = usePlaylists();
   const [settings, setSettings] = useState<AppSettings>({
     songsDirectory: '',
+    bridgePath: '',
+    cloneHeroPath: '',
     accentColor: DEFAULT_ACCENT,
   });
   const [status, setStatus] = useState<LibraryStatus | null>(null);
@@ -65,6 +67,62 @@ export function SettingsPage() {
               onClick={async () => {
                 const dir = await api().pickDirectory();
                 if (dir) setSettings((s) => ({ ...s, songsDirectory: dir }));
+              }}
+            >
+              Browse…
+            </button>
+          </div>
+
+          <div className="settings-row">
+            <div>
+              <label htmlFor="bridge-path">Bridge executable</label>
+              <p className="settings-help">
+                Used by Launch Bridge to find missing songs.
+              </p>
+            </div>
+            <input
+              id="bridge-path"
+              className="search-input"
+              placeholder="Path to Bridge.exe"
+              value={settings.bridgePath}
+              onChange={(e) =>
+                setSettings((s) => ({ ...s, bridgePath: e.target.value }))
+              }
+            />
+            <button
+              className="btn"
+              type="button"
+              onClick={async () => {
+                const path = await api().pickExecutable();
+                if (path) setSettings((s) => ({ ...s, bridgePath: path }));
+              }}
+            >
+              Browse…
+            </button>
+          </div>
+
+          <div className="settings-row">
+            <div>
+              <label htmlFor="clone-hero-path">Clone Hero executable</label>
+              <p className="settings-help">
+                Used by Launch Clone Hero from the catalog.
+              </p>
+            </div>
+            <input
+              id="clone-hero-path"
+              className="search-input"
+              placeholder="Path to Clone Hero.exe"
+              value={settings.cloneHeroPath}
+              onChange={(e) =>
+                setSettings((s) => ({ ...s, cloneHeroPath: e.target.value }))
+              }
+            />
+            <button
+              className="btn"
+              type="button"
+              onClick={async () => {
+                const path = await api().pickExecutable();
+                if (path) setSettings((s) => ({ ...s, cloneHeroPath: path }));
               }}
             >
               Browse…

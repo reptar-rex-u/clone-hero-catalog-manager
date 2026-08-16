@@ -70,6 +70,8 @@ npm start
 - Catalog filters: decade (80's / 90's / 2000's…), genre, charter, instrument + inline icons per row
 - Lyrics / video presence flags
 - Settings: Songs folder, accent color, rescan, export skipped-songs log, export/import settings (accent color, favorites & playlists)
+- Settings: Bridge and Clone Hero executable paths with native `.exe` pickers
+- Catalog launch buttons for Clone Hero and Bridge, including a Bridge fallback action after filtered searches
 - Virtualized catalog (no album art on the main list)
 - Favorites + temporary setlist (setlist clears on quit)
 - 30s song preview from `song.*` audio (falls back to `guitar.*` / other stems), starting at `preview_start_time` from song.ini or chart

@@ -30,3 +30,10 @@ Desktop app: Electron Forge + Vite + React + better-sqlite3.
 ## UI
 - Dark widescreen catalog layout; virtualize large lists.
 - Search debounce 300ms.
+
+## Git repository workflow
+- Keep source, configuration, documentation, and lockfiles synchronized with the Git repository after substantive changes.
+- Before publishing changes, inspect `git status`, the complete diff, and recent commit history.
+- Commit changes only when the user asks to commit, publish, or push them.
+- Never push, create releases, or modify GitHub remotely unless the user explicitly asks.
+- Do not commit generated output (`node_modules/`, `.vite/`, or `out/`) or secrets.
